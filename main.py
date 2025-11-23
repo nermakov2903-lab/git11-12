@@ -1,20 +1,18 @@
-from src.menu_task8 import menu_task8
+from task8_common_numbers import count_common_numbers
+from menu_task8 import menu_task8
 
 def main():
-    while True:
-        print("Главное меню")
-        print("1. Задание №8")
-        print("0. Выход")
+    print("Тест алгоритма задания 8:")
+    arr1 = [12, 23, 34, 45]
+    arr2 = [21, 23, 43, 50]
+    print("arr1:", arr1)
+    print("arr2:", arr2)
+    result = count_common_numbers(arr1, arr2)
+    print("Количество общих чисел (с учётом переворота):", result)
 
-        choice = input("Выберите пункт меню: ")
-
-        if choice == "1":
-            menu_task8()
-        elif choice == "0":
-            print("Выход.")
-            break
-        else:
-            print("Ошибка: нет такого пункта меню!")
+    
+    print("Запуск меню задания 8")
+    menu_task8()
 
 if __name__ == "__main__":
     main()
