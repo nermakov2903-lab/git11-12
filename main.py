@@ -1,21 +1,10 @@
-from menu_task8 import menu_task8
+from src.array_sort import sort_array
+from src.array_input import manual_input_array
 
 def main():
-    while True:
-        print("\n=== Главное меню ===")
-        print("1. Задание №8")
-        print("0. Выход")
-
-        choice = input("Выберите пункт меню: ")
-
-        if choice == "1":
-            menu_task8()
-        elif choice == "0":
-            print("Выход.")
-            break
-        else:
-            print("Ошибка: нет такого пункта меню!")
+    print("Тест функции ручного ввода массива:")
+    arr = manual_input_array()
+    print("Вы ввели:", arr)
 
 if __name__ == "__main__":
     main()
-
