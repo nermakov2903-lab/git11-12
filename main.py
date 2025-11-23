@@ -1,9 +1,12 @@
-from src.array_generate import generate_array
+from src.array_merge import merge_arrays
 
 def main():
-    print("Тест генерации массива:")
-    arr = generate_array(5, 0, 9)
-    print("Сгенерированный массив:", arr)
+    print("Тест объединения массивов:")
+    arr1 = [1, 2, 3]
+    arr2 = [4, 5, 6]
+    print("arr1:", arr1)
+    print("arr2:", arr2)
+    print("Объединение:", merge_arrays(arr1, arr2))
 
 if __name__ == "__main__":
     main()
