@@ -1,5 +1,5 @@
-from src.array_sort import sort_array
-from src.array_input import manual_input_array
+from array_sort import sort_array
+from array_input import manual_input_array
 
 def main():
     print("Тест функции ручного ввода массива:")
