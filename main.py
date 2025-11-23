@@ -1,10 +1,9 @@
-from src.array_sort import sort_array
-from src.array_input import manual_input_array
+from src.array_generate import generate_array
 
 def main():
-    print("Тест функции ручного ввода массива:")
-    arr = manual_input_array()
-    print("Вы ввели:", arr)
+    print("Тест генерации массива:")
+    arr = generate_array(5, 0, 9)
+    print("Сгенерированный массив:", arr)
 
 if __name__ == "__main__":
     main()
