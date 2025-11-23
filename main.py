@@ -1,9 +1,9 @@
-from src.menu_task8 import menu_task8
+from menu_task8 import menu_task8
 
 def main():
     while True:
-        print("\n=== Главное меню ===")
-        print("1. Задание №8")
+        print("Главное меню ")
+        print("1. Задание №2")
         print("0. Выход")
 
         choice = input("Выберите пункт меню: ")
