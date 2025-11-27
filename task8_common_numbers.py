@@ -1,3 +1,4 @@
+from logger import logger
 """
 Модуль реализации алгоритма задания №2 (вариант 8):
 Определение количества чисел, которые совпадают или имеют совпадающую
@@ -5,6 +6,7 @@
 """
 
 def reverse_number(n: int) -> int:
+    logger.info(f"Вызов reverse_number() с аргументом: {n}")
     """
     Возвращает перевёрнутую версию целого числа.
 
@@ -20,10 +22,14 @@ def reverse_number(n: int) -> int:
     sign = -1 if n < 0 else 1
     n = abs(n)
     reversed_str = str(n)[::-1]
-    return sign * int(reversed_str)
+    result = sign * int(reversed_str)
+
+    logger.info(f"Результат reverse_number(): {result}")
+    return result
 
 
 def count_common_numbers(arr1, arr2):
+    logger.info(f"Вызов count_common_numbers() с массивами:\n  arr1={arr1}\n  arr2={arr2}")
     """
     Подсчитывает количество чисел, общих для двух массивов,
     включая случаи, когда совпадает перевёрнутая версия числа.
@@ -49,5 +55,6 @@ def count_common_numbers(arr1, arr2):
         reversed_num = reverse_number(num)
         if num in set2 or reversed_num in set2:
             count += 1
-
+            
+    logger.info(f"Результат count_common_numbers(): {count}")
     return count
