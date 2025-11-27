@@ -40,49 +40,85 @@ def menu_task8():
 
         choice = input("Ваш выбор: ")
         logger.info(f"Пользователь выбрал пункт меню: {choice}")
+        try:
+            if choice == "1":
+                try:
+                    logger.info("Пользователь вводит массивы вручную")
+                    print("Введите первый массив:")
+                    arr1 = manual_input_array()
+                    print("Введите второй массив:")
+                    arr2 = manual_input_array()
+                    result = None  # сброс
+                    print("Массивы успешно введены.")
+                    logger.info(f"Введены массивы:\n arr1={arr1}\n arr2={arr2}")
+                except ValueError:
+                    logger.error("В массив введены нечисловые значения")
+                    raise ValueError("В массив можно вводить только числа")
+    
+            elif choice == "2":
+                logger.info("Пользователь выбрал генерацию массивов")
+                n = int(input("Введите размер массивов: "))
+                arr1 = generate_array(n)
+                arr2 = generate_array(n)
+                result = None
+                print("Сгенерированы массивы:")
+                print("Массив 1:", arr1)
+                print("Массив 2:", arr2)
+                logger.info(f"Сгенерированы массивы:\n arr1={arr1}\n arr2={arr2}")
+    
+            elif choice == "3":
+                 logger.info("Пользователь пытается выполнить анализ")
+                if arr1 is None or arr2 is None:
+                    print("Ошибка: массивы ещё не заданы.")
+                    logger.info("Анализ невозможен: массивы не заданы")
+                else:
+                    result = count_common_numbers(arr1, arr2)
+                    print("Анализ выполнен.")
 
-        if choice == "1":
-            logger.info("Пользователь вводит массивы вручную")
-            print("Введите первый массив:")
-            arr1 = manual_input_array()
-            print("Введите второй массив:")
-            arr2 = manual_input_array()
-            result = None  # сброс
-            print("Массивы успешно введены.")
-            logger.info(f"Введены массивы:\n arr1={arr1}\n arr2={arr2}")
 
-        elif choice == "2":
-            logger.info("Пользователь выбрал генерацию массивов")
-            n = int(input("Введите размер массивов: "))
-            arr1 = generate_array(n)
-            arr2 = generate_array(n)
-            result = None
-            print("Сгенерированы массивы:")
-            print("Массив 1:", arr1)
-            print("Массив 2:", arr2)
-            logger.info(f"Сгенерированы массивы:\n arr1={arr1}\n arr2={arr2}")
+            elif choice == "3":
+                logger.info("Пользователь пытается выполнить анализ")
+            try:
+                if arr1 is None or arr2 is None:
+                   logger.info("Анализ невозможен: массивы не заданы")
+                    raise RuntimeError("Массивы ещё не заданы. Введите их сначала.")
 
-        elif choice == "3":
-             logger.info("Пользователь пытается выполнить анализ")
-            if arr1 is None or arr2 is None:
-                print("Ошибка: массивы ещё не заданы.")
-                logger.info("Анализ невозможен: массивы не заданы")
-            else:
                 result = count_common_numbers(arr1, arr2)
+                logger.info("Анализ успешно выполнен")
                 print("Анализ выполнен.")
 
-        elif choice == "4":
-            logger.info("Пользователь запросил вывод результата")
-            if result is None:
-                print("Ошибка: нет результата. Сначала выполните анализ.")
-                logger.info("Результат отсутствует — анализ не выполнен")
+             except RuntimeError as e:
+                print("Ошибка:", e)
+                logger.info(f"RuntimeError: {e}")
+
+            except Exception as e:
+                print("Неизвестная ошибка при выполнении анализа:", e)
+                logger.info(f"Неизвестная ошибка: {e}")
+    
+            elif choice == "4":
+                logger.info("Пользователь запросил вывод результата")
+                if result is None:
+                    raise RuntimeError("Сначала выполните анализ")
+                print("Результат:", result)
+
+    
+            elif choice == "0":
+                logger.info("Возврат в главное меню")
+                return
+
             else:
-                print("Количество общих чисел (с учетом перевёрнутых):", result)
+                logger.info("Пользователь сделал неверный выбор")
+                print("Неверный выбор, попробуйте снова.")
 
-        elif choice == "0":
-            logger.info("Возврат в главное меню")
-            return
-
-        else:
-            logger.info("Пользователь сделал неверный выбор")
-            print("Неверный выбор, попробуйте снова.")
+    
+        except ValueError as e:
+            print("Ошибка:", e)
+            logger.info(f"ValueError: {e}")
+        
+        except RuntimeError as e:
+            print("Ошибка:", e)
+            logger.info(f"RuntimeError: {e}")
+        
+        except Exception as e:
+            print("Неизвестная ошибка:", e)
+            logger.info(f"Неизвестная ошибка: {e}")
