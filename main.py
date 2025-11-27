@@ -7,8 +7,8 @@
     — Вызов вложенных меню для выполнения отдельных задач.
     — Завершение работы программы.
 """
-
-from src.menu_task8 import menu_task8
+from logger import logger
+from menu_task8 import menu_task8
 
 def main():
     """
@@ -23,16 +23,26 @@ def main():
     while True:
         print("\nГлавное меню:")
         print("1. Выполнить задание №2")
+        print("2. Отключить логирование (CRITICAL)")
         print("0. Выход")
 
         choice = input("Ваш выбор: ")
+        logger.info(f"Пользователь выбрал пункт главного меню: {choice}")
 
         if choice == "1":
             menu_task8()
+            
+        elif choice == "2":
+            logger.setLevel("CRITICAL")
+            print("Логирование отключено!")
+            logger.critical("Логи ниже уровня CRITICAL теперь отключены")
+            
         elif choice == "0":
+            logger.info("Завершение работы программы")
             print("Завершение программы.")
             break
         else:
+            logger.info("Неизвестный пункт меню")
             print("Ошибка: неизвестный пункт меню.")
 
 if __name__ == "__main__":
