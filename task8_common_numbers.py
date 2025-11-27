@@ -1,4 +1,5 @@
 from logger import logger
+from exceptions import InvalidNumberError, EmptyArrayError
 """
 Модуль реализации алгоритма задания №2 (вариант 8):
 Определение количества чисел, которые совпадают или имеют совпадающую
@@ -21,7 +22,7 @@ def reverse_number(n: int) -> int:
     """
     if not isinstance(n, int):
         logger.info("reverse_number получил не число")
-        raise ValueError("Ожидалось целое число")
+        raise InvalidNumberError("Аргумент должен быть целым числом")
         
     sign = -1 if n < 0 else 1
     n = abs(n)
@@ -54,7 +55,7 @@ def count_common_numbers(arr1, arr2):
     """
     if arr1 is None or arr2 is None:
         logger.info("Один из массивов не был задан")
-        raise RuntimeError("Массивы должны быть заданы")
+        raise EmptyArrayError("Массивы должны быть заданы")
         
     set2 = set(arr2)
     count = 0
@@ -62,7 +63,7 @@ def count_common_numbers(arr1, arr2):
     for num in arr1:
         try:
             reversed_num = reverse_number(num)
-        except ValueError as e:
+        except InvalidNumberError as e:
             # Ошибка внутри reverse_number — продолжаем
             logger.info(f"Ошибка reverse_number: {e}")
             continue
