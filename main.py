@@ -8,7 +8,9 @@
     — Завершение работы программы.
 """
 from logger import logger
+from messages import Messages
 from menu_task8 import menu_task8
+from exceptions import InvalidMenuChoiceError
 
 def main():
     """
@@ -21,29 +23,37 @@ def main():
     print("=== Программа: задание №2 ===")
 
     while True:
-        print("\nГлавное меню:")
-        print("1. Выполнить задание №2")
-        print("2. Отключить логирование (CRITICAL)")
-        print("0. Выход")
+        print(Messages.MENU_MAIN["title"])
+        print(Messages.MENU_MAIN["choose_task"])
+        print(Messages.MENU_MAIN["disable_log"])
+        print(Messages.MENU_MAIN["exit"])
 
-        choice = input("Ваш выбор: ")
+        choice = input(Messages.MENU_MAIN["prompt"])
         logger.info(f"Пользователь выбрал пункт главного меню: {choice}")
 
-        if choice == "1":
-            menu_task8()
-            
-        elif choice == "2":
-            logger.setLevel("CRITICAL")
-            print("Логирование отключено!")
-            logger.critical("Логи ниже уровня CRITICAL теперь отключены")
-            
-        elif choice == "0":
-            logger.info("Завершение работы программы")
-            print("Завершение программы.")
-            break
-        else:
-            logger.info("Неизвестный пункт меню")
-            print("Ошибка: неизвестный пункт меню.")
+        try:
+            if choice == "1":
+                logger.info("Запуск меню задания №2")
+                menu_task8()
+                
+            elif choice == "2":
+                logger.setLevel("CRITICAL")
+                logger.critical("Логи ниже уровня CRITICAL теперь отключены")
+                print(Messages.ACTIONS["logs_off"])
+                
+            elif choice == "0":
+                logger.info("Завершение работы программы")
+                break
+            else:
+                raise InvalidMenuChoiceError(choice)
+
+        except InvalidMenuChoiceError as e:
+            print("Ошибка:", e)
+            logger.error(f"Меню: {e}")
+
+        except Exception as e:
+            print("Неизвестная ошибка")
+            logger.critical(f"Ошибка: {e}")
 
 if __name__ == "__main__":
     main()
