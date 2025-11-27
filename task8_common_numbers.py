@@ -19,6 +19,10 @@ def reverse_number(n: int) -> int:
     Returns:
         int: Перевёрнутое число с тем же знаком.
     """
+    if not isinstance(n, int):
+        logger.error("reverse_number получил не число")
+        raise ValueError("Ожидалось целое число")
+        
     sign = -1 if n < 0 else 1
     n = abs(n)
     reversed_str = str(n)[::-1]
@@ -48,11 +52,21 @@ def count_common_numbers(arr1, arr2):
     Returns:
         int: Количество найденных совпадений.
     """
+    if arr1 is None or arr2 is None:
+        logger.error("Один из массивов не был задан")
+        raise RuntimeError("Массивы должны быть заданы")
+        
     set2 = set(arr2)
     count = 0
 
     for num in arr1:
-        reversed_num = reverse_number(num)
+        try:
+            reversed_num = reverse_number(num)
+        except ValueError as e:
+            # Ошибка внутри reverse_number — продолжаем
+            logger.error(f"Ошибка reverse_number: {e}")
+            continue
+            
         if num in set2 or reversed_num in set2:
             count += 1
             
