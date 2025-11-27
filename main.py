@@ -1,5 +1,4 @@
 from task8_common_numbers import count_common_numbers
-from menu_task8 import menu_task8
 
 def main():
     print("Тест алгоритма задания 8:")
@@ -10,9 +9,6 @@ def main():
     result = count_common_numbers(arr1, arr2)
     print("Количество общих чисел (с учётом переворота):", result)
 
-    
-    print("Запуск меню задания 8")
-    menu_task8()
 
 if __name__ == "__main__":
     main()
