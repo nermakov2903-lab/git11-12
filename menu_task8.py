@@ -52,8 +52,8 @@ def menu_task8():
                     print("Массивы успешно введены.")
                     logger.info(f"Введены массивы:\n arr1={arr1}\n arr2={arr2}")
                 except ValueError:
-                    logger.error("В массив введены нечисловые значения")
-                    raise ValueError("В массив можно вводить только числа")
+                    logger.error("В массив введены нечисловые значения или нецелочисленные")
+                    raise ValueError("В массив можно вводить только числа или целочисленные")
     
             elif choice == "2":
                 logger.info("Пользователь выбрал генерацию массивов")
@@ -67,33 +67,23 @@ def menu_task8():
                 logger.info(f"Сгенерированы массивы:\n arr1={arr1}\n arr2={arr2}")
     
             elif choice == "3":
-                 logger.info("Пользователь пытается выполнить анализ")
-                if arr1 is None or arr2 is None:
-                    print("Ошибка: массивы ещё не заданы.")
-                    logger.info("Анализ невозможен: массивы не заданы")
-                else:
-                    result = count_common_numbers(arr1, arr2)
-                    print("Анализ выполнен.")
-
-
-            elif choice == "3":
                 logger.info("Пользователь пытается выполнить анализ")
-            try:
-                if arr1 is None or arr2 is None:
-                   logger.info("Анализ невозможен: массивы не заданы")
+                try:
+                    if arr1 is None or arr2 is None:
+                        logger.info("Анализ невозможен: массивы не заданы")
                     raise RuntimeError("Массивы ещё не заданы. Введите их сначала.")
 
-                result = count_common_numbers(arr1, arr2)
-                logger.info("Анализ успешно выполнен")
-                print("Анализ выполнен.")
+                    result = count_common_numbers(arr1, arr2)
+                    logger.info("Анализ успешно выполнен")
+                    print("Анализ выполнен.")
 
-             except RuntimeError as e:
-                print("Ошибка:", e)
-                logger.info(f"RuntimeError: {e}")
+                except RuntimeError as e:
+                    print("Ошибка:", e)
+                    logger.info(f"RuntimeError: {e}")
 
-            except Exception as e:
-                print("Неизвестная ошибка при выполнении анализа:", e)
-                logger.info(f"Неизвестная ошибка: {e}")
+                except Exception as e:
+                    print("Неизвестная ошибка при выполнении анализа:", e)
+                    logger.info(f"Неизвестная ошибка: {e}")
     
             elif choice == "4":
                 logger.info("Пользователь запросил вывод результата")
