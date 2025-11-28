@@ -8,9 +8,9 @@
     — выводить результат.
 """
 
-from src.array_input import manual_input_array
-from src.array_generate import generate_array
-from src.task8_common_numbers import count_common_numbers
+from array_input import manual_input_array
+from array_generate import generate_array
+from task8_common_numbers import count_common_numbers
 
 def menu_task8():
     """
