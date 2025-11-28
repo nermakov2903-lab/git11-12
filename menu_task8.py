@@ -52,7 +52,6 @@ def menu_task8():
                     print("Массивы успешно введены.")
                     logger.info(f"Введены массивы:\n arr1={arr1}\n arr2={arr2}")
                 except ValueError:
-                    logger.error("В массив введены нечисловые значения или нецелочисленные")
                     raise ValueError("В массив можно вводить только числа или целочисленные")
     
             elif choice == "2":
