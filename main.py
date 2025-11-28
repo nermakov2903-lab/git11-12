@@ -8,7 +8,7 @@
     — Завершение работы программы.
 """
 
-from src.menu_task8 import menu_task8
+from menu_task8 import menu_task8
 
 def main():
     """
